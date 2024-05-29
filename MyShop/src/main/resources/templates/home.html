@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Figure Shop</title>
+    <!--Font Awesome CSS-->
+    <link rel="stylesheet" th:href="@{/css/fontawesome/all.css}">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-icons.min.css}">
+    <!--Custom CSS-->
+<!--    <link rel="stylesheet" th:href="@{/css/common.css}">-->
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+</head>
+<body>
+<!-- Home Page -->
+
+<!-- Navbar -->
+<div th:replace="~{component/homenavbar :: homenavbar}"></div>
+
+<!-- Product Display -->
+<!--<div th:replace="~{pages/homeproducts :: homeproducts}"></div>-->
+<!--<th:block layout:fragment="content"></th:block>-->
+
+<!--Product Display and Detail-->
+<th:block layout:fragment="content"></th:block>
+
+<!--User View-->
+<th:block layout:fragment="user"></th:block>
+
+<!--Address View-->
+<th:block layout:fragment="address"></th:block>
+
+<!--Orders View-->
+<th:block layout:fragment="orders"></th:block>
+
+<!--Payment View-->
+<th:block layout:fragment="payment"></th:block>
+
+<!-- Footer -->
+<hr />
+<div th:replace="~{component/homefooter :: homefooter}"></div>
+
+<div th:replace="~{toast/toast-success :: toast-success}"></div>
+<div th:replace="~{toast/toast-error :: toast-error}"></div>
+
+<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/detail.js}"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home.html}">
+<head>
+    <title>User</title>
+</head>
+<body>
+<!--User Page-->
+<div layout:fragment="user">
+    <div class="container">
+        <div class="row">
+            <div class="account">
+                <h3 class="text-center">Your Account</h3>
+            </div>
+            <div class="col-md-4 user-view-col">
+                <div class="user-account">
+                    <h5 class="mb-md-4">User Account</h5>
+                    <div class="avatar mb-md-3">
+                        <img src="/image/Avatar.jpg" alt="..."/>
+                    </div>
+                    <div class="list mb-md-3">
+                        <a href="#">List of Addresses</a>
+                    </div>
+                    <div class="list mb-md-3">
+                        <a href="#">List of Orders</a>
+                    </div>
+                    <div class="log-out">
+                        <a href="#">Log Out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 user-detail-col">
+                <div class="account-detail">
+                    <h5>Account Detail</h5>
+                </div>
+                <hr/>
+                <div class="user-detail">
+                    <div class="input-group mb-3 user-name">
+                        <label class="mb-md-2">Username</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3 full-name">
+                        <label class="mb-md-2">FullName</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="gender mb-3">
+                        <label class="mb-md-2">Gender</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">DOB</span>
+                        <label>
+                            <input type="text" class="form-control"/>
+                        </label>
+                    </div>
+
+                    <div class="input-group mb-3 phone-number">
+                        <label class="mb-md-2">Phone Number</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" aria-label="PhoneNumber" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="mb-md-2">Your Email</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">@example.com</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="mb-md-2">Description</label>
+                        <div class="input-group">
+                            <textarea class="form-control" aria-label="Description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="save-update">
+                        <button type="button" class="btn btn-outline-success">Update Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

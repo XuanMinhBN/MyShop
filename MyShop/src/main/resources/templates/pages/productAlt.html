@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+    <div class="container mt-5" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-3" th:each="product : ${productList}">
+            <div class="card mb-md-4">
+                <img th:src="@{'/image/products/'+${product.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a th:href="@{'detail/'+ *{product.id}}">
+                        <h6 class="card-title" th:text="${product.name}"></h6>
+                    </a>
+                    <div class="price text-center mb-md-2 fw-bold text-danger">
+                        <span th:text="*{#numbers.formatInteger(product.price, 3, 'POINT')}"></span><sup>đ</sup>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">View detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

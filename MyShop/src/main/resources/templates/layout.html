@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+<!--    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Bootstrap demo</title>-->
+    <!--Font Awesome CSS-->
+    <link rel="stylesheet" th:href="@{/css/fontawesome/all.css}">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-icons.min.css}">
+    <!--Custom CSS-->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+    <div th:replace="~{component/navbar :: navbar}"></div>
+
+<!--    <div th:replace="~{pages/products :: products}"></div>-->
+    <th:block layout:fragment="content"></th:block>
+
+    <th:block layout:fragment="detail"></th:block>
+
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+</body>
+</html>

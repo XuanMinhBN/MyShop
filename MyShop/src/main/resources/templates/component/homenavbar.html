@@ -1,0 +1,250 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="homenavbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/main/home">
+            <img
+                    src="https://t4.ftcdn.net/jpg/03/34/53/51/360_F_334535136_vvbWaKEpsHIMS4dpJUxgXZL6clQX7VGs.jpg"
+                    alt="Logo"
+                    width="100"
+                    height="34"
+                    class="d-inline-block align-text-top"
+            />
+            MyShop</a
+        >
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            style="font-size: 16px"
+                    ><i class="bi bi-geo-alt-fill"></i>
+                        Deliver to
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">China</a></li>
+                        <li><a class="dropdown-item" href="#">Japan</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Korea</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">USA</a></li>
+                        <li><a class="dropdown-item" href="#">Vietnam</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <form class="search_box" th:action="@{/main/search}" method="get">
+                        <input type="search" placeholder="Search" name="search_bar"/>
+                        <span class="bi bi-search"><button type="submit"></button></span>
+                    </form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            id="lang"
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="bi bi-translate"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tiếng Việt</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">日本語</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">한국어</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Français</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            id="bell"
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="bi bi-bell-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            id="user"
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="login.html"
+                                    target="_blank"
+                            >Login</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="register.html"
+                                    target="_blank"
+                            >Register</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            id="carts"
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="bi bi-cart-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"></a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            id="icon"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="bi bi-moon-stars-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="javascript:void(0)"
+                                    onclick="getTheme('light')"
+                                    theme-value="light"
+                            >
+                                <i class="bi bi-brightness-high-fill me-2"></i>Light
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="javascript:void(0)"
+                                    onclick="getTheme('dark')"
+                                    theme-value="dark"
+                            >
+                                <i class="bi bi-moon-stars-fill me-2"></i>Dark
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="javascript:void(0)"
+                                    onclick="getTheme('auto')"
+                                    theme-value="auto"
+                            >
+                                <i class="bi bi-circle-half me-2"></i>Auto
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="status" class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            id="weather"
+                    >
+                        <i class="bi bi-cloud-sun-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="getWeatherInfo('Beijing')"
+                            >Beijing</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="getWeatherInfo('Tokyo')"
+                            >Tokyo</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="getWeatherInfo('seoul')"
+                            >Seoul</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="getWeatherInfo('New_York')"
+                            >New York</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onclick="getWeatherInfo('Hanoi')"
+                            >Hanoi</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

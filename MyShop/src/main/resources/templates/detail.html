@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Figure Shop</title>
+</head>
+<body>
+<!--Detail Page-->
+<!-- Navbar -->
+<!--<div th:replace="~{component/homenavbar :: homenavbar}"></div>-->
+
+<!--Detail Product-->
+<div class="detail-display" layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="image-view">
+                    <img th:src="@{'/image/products/'+${product.image}}" alt="...">
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="product-title text-start">
+                    <h1 th:text="${product.name}"></h1>
+                </div>
+                <div class="price text-start">
+                    <span class="price-product" th:text="*{#numbers.formatInteger(product.price, 3, 'POINT')}"></span><sup>đ</sup>
+                </div>
+                <div class="available">
+                    <h6 style="margin-right: 4px">Available Products:</h6>
+                    <h6 id="quantity-stock" th:text="${product.quantity}"></h6>
+                </div>
+                <div class="quantity text-start">
+                    <span th:onclick="updateQuantity(0)" class="minus">-</span>
+                    <span id="quantity-number" class="num">0</span>
+                    <span th:onclick="updateQuantity(1)" class="plus">+</span>
+                </div>
+                <div class="buy-many justify-content-center">
+                    <div class="add-cart">
+                        <button class="btn-add" th:onclick="'javascript:addToCart('+${product.id}+')'">Add to cart</button>
+                    </div>
+                    <div class="cart">
+                        <button class="btn-buy">Buy Now</button>
+                    </div>
+                </div>
+                <div class="description-detail text-start">
+                    <h4>Detail Description</h4>
+                    <h6 th:text="${product.description}"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
