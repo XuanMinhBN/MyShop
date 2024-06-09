@@ -46,9 +46,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <form class="search_box" th:action="@{/main/search}" method="get">
+                    <form id="submit" class="search_box" th:action="@{/main/search}" method="get">
                         <input type="search" placeholder="Search" name="search_bar"/>
-                        <span class="bi bi-search"><button type="submit"></button></span>
+                        <span class="bi bi-search" th:onclick="submit()"></span>
                     </form>
                 </li>
                 <li class="nav-item dropdown">
@@ -136,13 +136,45 @@
                             aria-expanded="false"
                     >
                         <i class="bi bi-cart-fill"></i>
+                        <sup>
+                            <span id="quantity-item-in-cart" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    th:text="${session.totalProductQuantity == null ? 0 : session.totalProductQuantity}">
+                            </span>
+                        </sup>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"></a>
+                    <ul class="dropdown-menu dropdown-menu-end my-cart">
+                        <li class="cart-view" >
+                                <div class="cart-view-title">
+                                    <p class="tiny-cart-title text-center">Your Cart</p>
+                                </div>
+                                <div class="text-center" th:if="${session.cart==null}">
+                                    <p>Cart is empty!</p>
+                                </div>
+                                <div id="items" th:unless="${session.cart==null}">
+                                    <div class="cart-view-scroll" th:each="item:${session.cart}">
+                                        <table class="table-clone">
+                                            <tbody class="table-body-clone">
+                                            <tr class="mini-cart-hidden">
+                                                <td class="mini-cart-left">
+                                                    <img th:src="@{'/image/products/'+${item.image}}" alt="...">
+                                                </td>
+                                                <td class="mini-cart-right">
+                                                    <div class="mini-cart-title">
+                                                        <p th:text="${item.itemName}"></p>
+                                                    </div>
+                                                    <div class="mini-cart-detail">
+                                                        <span class="mini-cart-quantity" th:text="${item.quantity}"></span>
+                                                        <span th:text="*{#numbers.formatInteger(item.totalPrice, 3, 'POINT')}"></span><sup>đ</sup>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            <div class="go-to-cart-btn">
+                                <a class="go-to-cart-way" th:href="@{/main/orders}">Go to your cart</a>
+                            </div>
                         </li>
                     </ul>
                 </li>

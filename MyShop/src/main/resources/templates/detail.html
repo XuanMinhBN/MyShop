@@ -34,7 +34,7 @@
                 </div>
                 <div class="quantity text-start">
                     <span th:onclick="updateQuantity(0)" class="minus">-</span>
-                    <span id="quantity-number" class="num">0</span>
+                    <span id="quantity-number" class="num">1</span>
                     <span th:onclick="updateQuantity(1)" class="plus">+</span>
                 </div>
                 <div class="buy-many justify-content-center">
@@ -53,5 +53,10 @@
         </div>
     </div>
 </div>
+
+<th:block layout:fragment="js">
+    <script th:src="@{/js/detail.js}"></script>
+</th:block>
+
 </body>
 </html>

@@ -13,4 +13,7 @@ public interface ProductService {
     List<Product> findByCategoryId(Long id);
 
     List<Product> findByNameContaining(String name);
+
+    List<Product> sortByPrice(String type);
+
 }

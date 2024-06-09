@@ -1,5 +1,6 @@
 package org.xumin.myshop.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class MainController {
         this.productService = productService;
     }
 
+    //Test
     @GetMapping("/layout")
     public String index(Model model){
         model.addAttribute("title", "MyShop");
@@ -45,8 +47,9 @@ public class MainController {
         model.addAttribute("productList", productList);
         return "/pages/productAlt";
     }
+    //
 
-
+    //Filter by category controller
     @GetMapping("/path/{categoryId}")
     public String path(@PathVariable(name = "categoryId") Long id, Model model){
         List<Product> productList = productService.findByCategoryId(id);
@@ -54,6 +57,15 @@ public class MainController {
         return "/pages/homeproducts";
     }
 
+    //Sort by price controller
+    @GetMapping("/sort/{type}")
+    public String sort(@PathVariable(name = "type") String type, Model model){
+        List<Product> productList = productService.sortByPrice(type);
+        model.addAttribute("productList", productList);
+        return "/pages/homeproducts";
+    }
+
+    //Product's detail controller
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model){
         Product product = productService.findById(id).orElse(null);
@@ -61,6 +73,7 @@ public class MainController {
         return "/detail";
     }
 
+    //Homepage controller
     @GetMapping("/home")
     public String home(Model model){
         model.addAttribute("title", "MyShop");
@@ -69,41 +82,53 @@ public class MainController {
         return "/pages/homeproducts";
     }
 
+    //Search function controller
     @GetMapping("/search")
     public String homeAlt(@RequestParam(name = "search_bar") String name, Model model){
         List<Product> productList = productService.findByNameContaining(name);
         model.addAttribute("productList", productList);
-        return "home";
+        return "/pages/homeproducts";
     }
 
+    //User page controller
     @GetMapping("/user")
     public String account(Model model){
         return "/pages/user";
     }
 
+    //Address page controller
     @GetMapping("/address")
     public String address(Model model){
         return "/pages/address";
     }
 
+    //Orders page controller
     @GetMapping("/orders")
     public String order(Model model){
         return "/pages/orders";
     }
 
+    //Payment page controller
     @GetMapping("/payment")
     public String payment(Model model){
         return "/pages/payment";
     }
 
+    //Login page controller
     @GetMapping("login")
-    public String login(@RequestParam("email_phone") String user, @RequestParam("pass") String pass, Model model){
-        model.addAttribute("user", user);
-        model.addAttribute("pass", pass);
+    public String login(){
         return "login";
     }
 
-    @GetMapping("/register")
+    //Logout page controller
+    @GetMapping("logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
+
+    //Register page controller
+    @GetMapping("register")
     public String register(){
         return "register";
     }

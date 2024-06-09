@@ -15,5 +15,6 @@ public class Item implements Serializable {
     private String image;
     private double price;
     private int quantity;
+    private int remainQuantity;
     private double totalPrice;
 }

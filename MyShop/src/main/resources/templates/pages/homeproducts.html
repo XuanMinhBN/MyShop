@@ -81,21 +81,39 @@
             </div>
             <div class="products-header">
                 <h2>Recommend for you</h2>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-primary btn-all filter-button">
-                        <a class="dropdown-item" th:href="@{/main/home}">All</a>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn1 filter-button">
-                        <a class="dropdown-item" th:href="@{/main/path/1}">Scale Figure</a>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn2 filter-button">
-                        <a class="dropdown-item" th:href="@{/main/path/2}">Action Figure</a>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn3 filter-button">
-                        <a class="dropdown-item" th:href="@{/main/path/3}">Chibi Figure</a>
-                    </button>
+            </div>
+
+            <div class="filter-product">
+                <div class="filter-by-category">
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-primary btn-all filter-button">
+                            <a class="dropdown-item" th:href="@{/main/home}">All</a>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn1 filter-button">
+                            <a class="dropdown-item" th:href="@{/main/path/1}">Scale Figure</a>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn2 filter-button">
+                            <a class="dropdown-item" th:href="@{/main/path/2}">Action Figure</a>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn3 filter-button">
+                            <a class="dropdown-item" th:href="@{/main/path/3}">Chibi Figure</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="filter-by-price">
+                    <div class="btn-group atom-button">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Sort by
+                        </button>
+                        <div class="dot"></div>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/main/sort/asc}">Cheap to Expensive</a></li>
+                            <li><a class="dropdown-item" th:href="@{/main/sort/desc}">Expensive to Cheap</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
             <div class="products">
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
                     <div class="col" th:each="product : ${productList}">

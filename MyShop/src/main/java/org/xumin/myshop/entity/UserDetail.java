@@ -11,8 +11,8 @@ import lombok.Setter;
 public class UserDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int id;
+    @Column(name = "user_detail_id")
+    private Long id;
     @Column
     private String email;
     @Column
@@ -23,6 +23,6 @@ public class UserDetail {
     private boolean gender;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User theUser;
 }

@@ -11,8 +11,8 @@ import lombok.Setter;
 public class ShippingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int id;
+    @Column(name = "shipping_address_id")
+    private Long id;
     @Column
     private String address;
     @Column(name = "receiver_name")
@@ -23,6 +23,6 @@ public class ShippingAddress {
     private boolean defaultAddress;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User theUser;
 }

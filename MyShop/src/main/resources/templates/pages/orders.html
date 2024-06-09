@@ -14,7 +14,13 @@
             <div class="text-center mt-md-3">
                 <h4>Your Shopping Cart</h4>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-md-8 p-2" th:if="${session.cart==null}">
+                <h4 class="text-center py-4">There is no items to view</h4>
+                <div>
+                    <img src="/image/empty.png" alt="..." width="180" style=" display: block; margin: 0 auto;">
+                </div>
+            </div>
+            <div class="col-md-8 p-2" th:unless="${session.cart==null}">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -23,25 +29,41 @@
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Temporary Count</th>
+                        <th scope="col">Remain</th>
                         <th class="text-center" scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr th:each="item:${session.cart}">
                         <th scope="row">
-                            <img src="..." alt="...">
+                            <img th:src="@{'/image/products/'+${item.image}}" alt="..." width="70">
                         </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <td>
+                            <p th:text="${item.itemName}"></p>
+                        </td>
+                        <td>
+                            <span th:text="*{#numbers.formatInteger(item.price, 3, 'POINT')}"></span><sup>đ</sup>
+                        </td>
                         <td class="align-items-center">
-                            <div class="input-group mb-3" style="width: 100px">
-                                <span class="input-group-text">-</span>
-                                <input type="text" class="form-control" value="1"/>
-                                <span class="input-group-text">+</span>
+                            <div class="input-group mb-3 " style="width: 100px">
+                                <span th:onclick="updateOrderQuantity(0)" class="input-group-text minus-type">-</span>
+                                <input id="quantity-box" type="text" class="form-control" th:value="${item.quantity}"/>
+                                <span th:onclick="updateOrderQuantity(1)" class="input-group-text plus-type">+</span>
                             </div>
                         </td>
-                        <td>10000.00</td>
-                        <td class="text-center"><i class="bi bi-trash"></i></td>
+                        <td>
+                            <span th:text="*{#numbers.formatInteger(item.totalPrice, 3, 'POINT')}"></span><sup>đ</sup>
+                        </td>
+                        <td>
+                            <div class="remain">
+                                <span id="quantity-remain" th:text="${item.remainQuantity}"></span>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span th:onclick="'javascript:confirmDeleteItemInCart('+${item.id}+')'">
+                                <i class="bi bi-trash delete"></i>
+                            </span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -54,7 +76,7 @@
                         </div>
                         <div class="side-box-total border-bot">
                             <p>Total:</p>
-                            <span>30000000<sup>đ</sup></span>
+                            <span><span th:text="*{#numbers.formatInteger(session.totalProductPrice, 3, 'POINT')}"></span><sup>đ</sup></span>
                         </div>
                         <div class="side-box-text mt-md-3">
                             <p>You can input sale code in payment</p>
@@ -70,5 +92,14 @@
         </div>
     </div>
 </div>
+
+<th:block layout:fragment="modal">
+    <div th:replace="~{modal/common/confirm-modal :: confirm-modal}"></div>
+</th:block>
+
+<th:block layout:fragment="js">
+    <script th:src="@{/js/orders.js}"></script>
+</th:block>
+
 </body>
 </html>

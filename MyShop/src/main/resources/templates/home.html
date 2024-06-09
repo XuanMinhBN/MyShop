@@ -44,12 +44,15 @@
 <hr />
 <div th:replace="~{component/homefooter :: homefooter}"></div>
 
+<th:block layout:fragment="modal"></th:block>
+
 <div th:replace="~{toast/toast-success :: toast-success}"></div>
 <div th:replace="~{toast/toast-error :: toast-error}"></div>
 
 <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/index.js}"></script>
-<script th:src="@{/js/detail.js}"></script>
+
+<th:block layout:fragment="js"></th:block>
 </body>
 </html>

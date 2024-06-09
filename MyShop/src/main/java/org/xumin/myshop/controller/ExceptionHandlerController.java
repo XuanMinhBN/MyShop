@@ -14,6 +14,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 //
 //    @ExceptionHandler(Exception.class)
 //    public String defaultErrorHandler(Exception e) {
-//        return "error500";
+//        return e.toString();
 //    }
 //}

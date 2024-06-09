@@ -153,6 +153,77 @@ a.nav-link {
     padding: 4px 0 0 0;
     margin-left: 10px;
 }
+.my-cart{
+    height: auto;
+    width: 400px;
+    padding-bottom: 0;
+}
+.cart-view{
+    padding: 10px;
+}
+.tiny-cart-title{
+    border-bottom: 1px solid #6c757d;
+    padding-bottom: 10px;
+}
+.mini-cart-left img{
+    width: 100px;
+}
+.mini-cart-right{
+    padding: 10px 10px 10px 40px;
+}
+.mini-cart-right p{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+.go-to-cart-btn{
+    text-align: end;
+    padding: 14px;
+}
+.go-to-cart-btn a{
+    border: 1px solid #000;
+    padding: 6px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.8s;
+    position: relative;
+}
+.go-to-cart-btn a::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: unset;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 0, 26, 0.57);
+    z-index: -1;
+    transition: 0.4s all ease-in-out 0s;
+}
+.go-to-cart-btn a:hover::before{
+    top:0;
+    right: unset;
+    left: 0;
+    width: 100%;
+}
+.go-to-cart-btn a::before{
+    top:0;
+    left: unset;
+    right: 0;
+    width: 0;
+}
+.go-to-cart-btn a:hover{
+    color: #fff;
+}
+.mini-cart-quantity{
+    background-color: #6c757d;
+    padding: 2px 14px;
+    border-radius: 6px;
+    margin-right: 20px;
+}
+.cart-view-scroll{
+    border-bottom: 1px solid #6c757d;
+    padding-bottom: 10px;
+}
 #icon {
     padding: 6px 0 0 0;
     margin-left: 10px;
@@ -164,6 +235,7 @@ nav .search_box {
     line-height: 35px;
 }
 nav .search_box input {
+    color: #000;
     border: 1px solid #000;
     border-right: none;
     outline: none;
@@ -186,9 +258,6 @@ nav .search_box span {
     cursor: pointer;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-}
-nav .search_box button{
-    visibility: hidden;
 }
 .nav-item .dropdown i.bi-translate {
     padding: 0;
@@ -221,6 +290,11 @@ li.nav-item {
     margin-top: 30px;
     margin-bottom: 20px;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.filter-product{
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
 }
@@ -272,6 +346,75 @@ li.nav-item {
 }
 .btn2:hover::before{
     height: 100%;
+}
+:root{
+    --bg: #3c465c;
+    --primary: #78ffcd;
+    --solid: #fff;
+    --btn-w: 10em;
+    --dot-w: calc(var(--btn-w) * 0.2);
+    --tr-X: calc(var(--btn-w) - var(--dot-w));
+}
+*, *:before, *:after{
+    box-sizing: border-box;
+}
+.atom-button{
+    position: relative;
+    margin: 0 auto;
+    width: var(--btn-w);
+    color: var(--primary);
+    border: .15em solid var(--primary);
+    border-radius: 5em;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 2em;
+    cursor: pointer;
+}
+.dot{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: var(--dot-w);
+    height: 100%;
+    border-radius: 100%;
+    transition: all 300ms ease;
+    display: none;
+}
+.dot:after{
+    content: "";
+    position: absolute;
+    left: calc(50% - 0.4em);
+    top: -0.4em;
+    height: 0.8em;
+    width: 0.8em;
+    background: var(--primary);
+    border-radius: 1em;
+    border: 0.25em solid var(--solid);
+    box-shadow: 0 0 0.7em var(--solid), 0 0 2em var(--primary);
+}
+.atom-button:hover .dot, .atom-button:focus .dot{
+    animation: atom 2s infinite linear;
+    display: block;
+}
+.atom-button button.dropdown-toggle{
+    border-radius: 5em;
+}
+@keyframes atom {
+    0%{
+        transform: translateX(0) rotate(0);
+    }
+    30%{
+        transform: translateX(var(--tr-X)) rotate(0);
+    }
+    50%{
+        transform: translateX(var(--tr-X)) rotate(180deg);
+    }
+    80%{
+        transform: translateX(0) rotate(180deg);
+    }
+    100%{
+        transform: translateX(0) rotate(360deg);
+    }
 }
 .card-title {
     font-size: 16px;
@@ -600,6 +743,12 @@ li.nav-item {
 .list a,.log-out a{
     text-decoration: none;
     color: #198754;
+}
+.minus-type,.plus-type{
+    cursor: pointer;
+}
+.delete{
+    cursor: pointer;
 }
 /* ----------------Addresses---------------- */
 .address-title{

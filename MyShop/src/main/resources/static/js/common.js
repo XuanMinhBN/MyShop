@@ -10,3 +10,7 @@ function showToast(id) {
     const toast = new bootstrap.Toast(document.getElementById(id));
     toast.show();
 }
+
+function submit(){
+    document.getElementById('submit').submit();
+}
