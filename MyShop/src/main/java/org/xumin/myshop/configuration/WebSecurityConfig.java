@@ -20,7 +20,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/main/home", "/main/login", "/main/logout","/main/register").permitAll()
                         .requestMatchers("/main/detail/**","/sort/**","/path/**","/main/search").permitAll()
                         .requestMatchers("/api/cart/**").permitAll()
-                        .requestMatchers("/main/payment","/cart/item/delete/**","/cart/delete","/main/orders").hasRole("MEMBER")
+                        .requestMatchers("/main/payment","/cart/item/delete/**","/cart/delete","/main/orders","/main/user").hasRole("MEMBER")
                         .requestMatchers("/admin/**","/employee/**").hasRole("ADMIN")
                         .requestMatchers("/employee/**").hasRole("EMPLOYEE")
                         .anyRequest().authenticated()

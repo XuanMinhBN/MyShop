@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="homenavbar">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" th:fragment="homenavbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="/main/home">
             <img
@@ -111,7 +111,7 @@
                         <li>
                             <a
                                     class="dropdown-item"
-                                    href="login.html"
+                                    th:href="@{/main/login}"
                                     target="_blank"
                             >Login</a
                             >
@@ -119,7 +119,7 @@
                         <li>
                             <a
                                     class="dropdown-item"
-                                    href="register.html"
+                                    th:href="@{/main/register}"
                                     target="_blank"
                             >Register</a
                             >

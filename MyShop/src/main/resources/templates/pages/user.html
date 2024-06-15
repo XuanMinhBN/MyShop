@@ -5,16 +5,18 @@
       layout:decorate="~{home.html}">
 <head>
     <title>User</title>
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
 <!--User Page-->
 <div layout:fragment="user">
-    <div class="container">
+    <div class="container mt-md-5">
         <div class="row">
             <div class="account">
                 <h3 class="text-center">Your Account</h3>
             </div>
-            <div class="col-md-4 user-view-col">
+            <div class="col-md-3 user-view-col">
                 <div class="user-account">
                     <h5 class="mb-md-4">User Account</h5>
                     <div class="avatar mb-md-3">
@@ -31,74 +33,92 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 user-detail-col">
+            <div class="col-md-9 user-detail-col">
                 <div class="account-detail">
                     <h5>Account Detail</h5>
                 </div>
-                <hr/>
-                <div class="user-detail">
-                    <div class="input-group mb-3 user-name">
-                        <label class="mb-md-2">Username</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-3 full-name">
-                        <label class="mb-md-2">FullName</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-
-                    <div class="gender mb-3">
-                        <label class="mb-md-2">Gender</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Male
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Female
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">DOB</span>
-                        <label>
-                            <input type="text" class="form-control"/>
-                        </label>
-                    </div>
-
-                    <div class="input-group mb-3 phone-number">
-                        <label class="mb-md-2">Phone Number</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" aria-label="PhoneNumber" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <label class="mb-md-2">Your Email</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2">@example.com</span>
-                        </div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <label class="mb-md-2">Description</label>
-                        <div class="input-group">
-                            <textarea class="form-control" aria-label="Description"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="save-update">
-                        <button type="button" class="btn btn-outline-success">Update Detail</button>
-                    </div>
+                <div class="account-tab">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Wait for confirmation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Confirmed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Preparing goods</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Delivering</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Complete</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Canceled</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Returns</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="user-detail mt-md-4">
+                    <table class="table table-dark table-hover" style="border: 1px solid gray">
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                Image
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                <div class="text-center">
+                                    Quantity
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div style="display: flex; justify-content: center">
+                                    Price
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="item:${session.cart}">
+                                <th scope="row">
+                                    <img th:src="@{'/image/products/'+${item.image}}" alt="..." width="70">
+                                </th>
+                                <td>
+                                    <p th:text="${item.itemName}"></p>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <span th:text="${item.quantity}"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <span th:text="*{#numbers.formatInteger(item.totalPrice, 3, 'POINT')}"></span><sup>đ</sup>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td colspan="2"></td>
+                                <td style="display: flex; justify-content: center">
+                                    <div>
+                                        <button type="button" class="btn btn-outline-success">Buy Again</button>
+                                        <button type="button" class="btn btn-outline-light">Contact Seller</button>
+                                        <button type="button" class="btn btn-outline-light">View Shop Rating</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

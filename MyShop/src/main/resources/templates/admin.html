@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin</title>
+    <!--Font Awesome CSS-->
+    <link rel="stylesheet" th:href="@{/css/fontawesome/all.css}">
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-icons.min.css}">
+    <!--Custom CSS-->
+    <link rel="stylesheet" th:href="@{/css/page/admin.css}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <header class="p-0">
+            <div class="navbar-admin">
+                <nav class="navbar navbar-expand-lg bg-dark border-body">
+                    <div class="container-fluid">
+                        <div class="admin-symbol">
+                            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                                <img src="/image/admin.png" alt="" width="80">
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                                <li>
+                                    <h3>Admin</h3>
+                                </li>
+                            </ul>
+                            <div style="margin-right: 16px; display: flex;">
+                                <i class="bi bi-clipboard2-data" style="font-size: 20px; cursor: pointer; margin-right: 2px;"></i>
+                            </div>
+                            <div class="btn-group" style="margin-right: 16px;">
+                                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell" style="font-size: 20px; cursor: pointer;"></i>
+                                </span>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><button class="dropdown-item" type="button">Action</button></li>
+                                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                                </ul>
+                            </div>
+                            <form class="d-flex" role="search" style="margin-right:16px;">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </form>
+                            <div class="dropdown">
+                                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/image/Avatar.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                                    <strong>Xumin</strong>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+                                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="d-flex flex-nowrap p-0 col-md-2">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" aria-current="page">
+                            <i class="bi bi-house-door" width="16" height="16">
+                                <use xlink:href="#home"/>
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-speedometer2" width="16" height="16">
+                                <use xlink:href="#speedometer2"/>
+                            </i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-table" width="16" height="16">
+                                <use xlink:href="#table"/>
+                            </i>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-grid" width="16" height="16">
+                                <use xlink:href="#grid"/>
+                            </i>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-bar-chart-line" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Customers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-person-circle"  width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Statistics
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-chat-left" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Reviews
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-cash-coin" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Transactions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-globe2" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Sellers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-tag" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Hot Offers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-body-emphasis">
+                            <i class="bi bi-gear" width="16" height="16">
+                                <use xlink:href="#people-circle"/>
+                            </i>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class=" b-example-vr"></div>
+        </main>
+        <main class="p-0 col-md-8">
+            <div class="greeting-bar mt-md-4">
+                <h5>Hi, Welcome back!</h5>
+                <button type="button" class="btn btn-info">Import</button>
+            </div>
+            <div class="dashboard-content mt-md-4">
+                <h3>Dashboard</h3>
+                <div class="specific-dashboard-content mt-md-3">
+                    <div class="card border-warning mb-3" style="width: 18rem;">
+                        <div class="card-header text-center text-warning">Total Sales</div>
+                        <div class="card-body text-warning">
+                            <h2 class="card-title">
+                                <i class="bi bi-coin"></i>
+                            </h2>
+                            <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">5.000.000.000đ</p>
+                        </div>
+                    </div>
+                    <div class="card border-success mb-3" style="width: 18rem;">
+                        <div class="card-header text-center text-success">Total Orders</div>
+                        <div class="card-body text-success">
+                            <h2 class="card-title">
+                                <i class="bi bi-cart3"></i>
+                            </h2>
+                            <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">3020</p>
+                        </div>
+                    </div>
+                    <div class="card border-danger mb-3" style="width: 18rem;">
+                        <div class="card-header text-center text-danger">Total Growth</div>
+                        <div class="card-body text-danger">
+                            <h2 class="card-title">
+                                <i class="bi bi-graph-up"></i>
+                            </h2>
+                            <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">10.000.000đ</p>
+                        </div>
+                    </div>
+                    <div class="card border-primary mb-3" style="width: 18rem;">
+                        <div class="card-header text-center text-primary">Total Products</div>
+                        <div class="card-body text-primary">
+                            <h2 class="card-title">
+                                <i class="bi bi-basket"></i>
+                            </h2>
+                            <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">3210</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-products mt-md-5" style="margin-left: 20px;">
+                    <h3 style="margin-left: 0;">Latest Products</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/page/admin.js}"></script>
+</body>
+</html>

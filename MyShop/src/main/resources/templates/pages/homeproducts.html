@@ -5,11 +5,13 @@
       layout:decorate="~{home.html}">
 <head>
     <title>Figure Shop</title>
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
 <!-- Product Display -->
 <div layout:fragment="content">
-<div class="container-fluid mb-3" >
+<div class="container-fluid mb-3 mt-md-5" >
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
@@ -127,7 +129,7 @@
                                 <p class="card-title text-center" th:text="${product.name}"></p>
                                 <div class="text-center mt-md-3">
                                     <button class="new-button button1"><a class="link1" th:href="@{'/main/detail/'+ *{product.id}}">View Detail</a></button>
-                                    <button class="new-button button2"><a class="link2">Buy</a></button>
+                                    <button class="new-button button2" th:onclick="'javascript:addToCart('+${product.id}+')'">Buy</button>
                                 </div>
                                 </p>
                             </div>
@@ -153,6 +155,26 @@
 <!--                    />-->
 <!--                </div>-->
 <!--            </div>-->
+            <!--Multi Page-->
+            <div class="pagination justify-content-center mt-md-4">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <div class="back-to-top">
                 <button class="btn">
                     <a href="#">
@@ -167,5 +189,7 @@
     </div>
 </div>
 </div>
+
+<script th:src="@{/js/page/detail.js}"></script>
 </body>
 </html>

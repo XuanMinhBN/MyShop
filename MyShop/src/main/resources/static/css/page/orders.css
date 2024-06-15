@@ -1,0 +1,29 @@
+/* ----------------Orders---------------- */
+.side-box{
+    padding: 20px;
+    border: 2px solid #6c757d;
+    border-radius: 10px;
+}
+.side-box-title{
+    padding-bottom: 10px;
+}
+.side-box-total{
+    display: flex;
+    justify-content: space-between;
+}
+.side-box-total p, .side-box-total span{
+    font-size: 22px;
+}
+.side-box-total span{
+    color: #dc3545;
+}
+.border-bot{
+    border-bottom: 1px solid gray;
+}
+.side-box-action a{
+    text-decoration: none;
+    color: #fff;
+}
+.side-box-action button{
+    width: 100%;
+}

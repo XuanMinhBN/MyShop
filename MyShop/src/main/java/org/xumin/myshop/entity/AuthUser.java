@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 import java.util.Date;
 
+@Getter
 public class AuthUser extends User {
 
     private Long id;

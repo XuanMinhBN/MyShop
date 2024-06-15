@@ -5,11 +5,14 @@
       layout:decorate="~{home.html}">
 <head>
     <title>Orders</title>
+    <link rel="stylesheet" th:href="@{/css/page/orders.css}">
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
 <!--Orders Page-->
 <div layout:fragment="orders">
-    <div class="container">
+    <div class="container mt-md-5">
         <div class="row">
             <div class="text-center mt-md-3">
                 <h4>Your Shopping Cart</h4>
@@ -83,7 +86,7 @@
                         </div>
                         <div class="side-box-action">
                             <button class="btn btn-danger" type="button">
-                                <a href="#">Payment</a>
+                                <a th:href="@{/main/payment}">Payment</a>
                             </button>
                         </div>
                     </div>
@@ -98,7 +101,7 @@
 </th:block>
 
 <th:block layout:fragment="js">
-    <script th:src="@{/js/orders.js}"></script>
+    <script th:src="@{/js/page/orders.js}"></script>
 </th:block>
 
 </body>

@@ -1,17 +1,23 @@
 package org.xumin.myshop.controller;
 
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.xumin.myshop.entity.AuthUser;
 import org.xumin.myshop.entity.Product;
 import org.xumin.myshop.service.ProductService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,10 +115,10 @@ public class MainController {
     }
 
     //Payment page controller
-    @GetMapping("/payment")
-    public String payment(Model model){
-        return "/pages/payment";
-    }
+//    @GetMapping("/payment")
+//    public String payment(Model model){
+//        return "/pages/payment";
+//    }
 
     //Login page controller
     @GetMapping("login")
@@ -131,5 +137,17 @@ public class MainController {
     @GetMapping("register")
     public String register(){
         return "register";
+    }
+
+    @GetMapping("/auth")
+    @Transactional(propagation = Propagation.REQUIRED)
+    public String auth(Model model, Principal principal, Authentication authentication) {
+        String username = principal.getName();
+        model.addAttribute("username", username);
+        model.addAttribute("userRole", authentication.getAuthorities());
+
+        AuthUser customUser = (AuthUser) authentication.getPrincipal();
+        model.addAttribute("customUser", customUser);
+        return "auth";
     }
 }

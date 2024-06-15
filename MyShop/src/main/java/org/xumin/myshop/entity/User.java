@@ -1,12 +1,10 @@
 package org.xumin.myshop.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,23 +26,24 @@ public class User {
     private String fullName;
     @Column(name = "created_at")
     private Date createdAt;
-    @Column(name = "delete_status")
+    @Column(name = "deleted")
     private boolean deleteStatus;
     @Column
     private boolean status;
 
-    @OneToOne(mappedBy = "theUser", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserDetail userDetail;
-    @OneToMany(mappedBy = "theUser", cascade = CascadeType.ALL)
-    private List<ShippingAddress> shippingAddresses;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserAddress> userAddresses;
+
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
-            joinColumns = {@JoinColumn(referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(referencedColumnName = "role_id")}
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public void addRole(Role role) {
         this.roles.add(role);

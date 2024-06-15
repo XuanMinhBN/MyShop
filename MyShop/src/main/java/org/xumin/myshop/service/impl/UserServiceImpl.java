@@ -9,16 +9,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.xumin.myshop.entity.AuthUser;
 import org.xumin.myshop.entity.Role;
+import org.xumin.myshop.entity.UserAddress;
 import org.xumin.myshop.entity.User;
 import org.xumin.myshop.reponsitory.RoleReponsitory;
 import org.xumin.myshop.reponsitory.UserReponsitory;
+import org.xumin.myshop.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final UserReponsitory userReponsitory;
     private final RoleReponsitory roleReponsitory;
@@ -56,5 +58,11 @@ public class UserServiceImpl implements UserDetailsService {
                 user.isDeleteStatus(),
                 user.isStatus()
         );
+    }
+
+
+    @Override
+    public User findByUsername(String username) {
+        return userReponsitory.findByUsername(username);
     }
 }

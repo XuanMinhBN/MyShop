@@ -5,6 +5,9 @@
       layout:decorate="~{home.html}">
 <head>
     <title>Payment</title>
+    <link rel="stylesheet" th:href="@{/css/page/payment.css}">
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
     <div layout:fragment="payment">
@@ -15,54 +18,73 @@
                 </div>
                 <div class="col-md-7">
                     <div class="receiver-info mt-md-3">
-                        <h4>Account Information</h4>
-                        <div class="form-receiver-info">
-                            <form class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputEmail4" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="inputEmail4">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="inputPassword4">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAddress" class="form-label">Country/Area</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="Country">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputAddress2" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Address">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="inputState" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="inputState">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="inputZip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
-                                </div>
-                                <div class="col-12">
-                                    <label for="phoneNumber" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="phoneNumber" placeholder="Phone number">
-                                </div>
-                                <div class="col-12">
-                                    <label for="phoneNumber" class="form-label">Email</label>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                        <span class="input-group-text" id="basic-addon2">@example.com</span>
+                        <h4>Shipping Information</h4>
+                        <form class="form-floating mt-md-3 mb-md-2">
+                            <select class="form-select form-select-lg mb-md-2" aria-label="Large select example">
+                                <option th:each="address : ${user.userAddresses}"
+                                        th:value="${address.id}"
+                                        th:text="${address.address}"
+                                        ></option>
+                            </select>
+                            <label for="floatingInputValue">Default Address</label>
+                        </form>
+                        <div class="form-receiver-info mb-md-4">
+                            <form class="form-floating mb-md-2">
+                                <input type="text" class="form-control" id="floatingInputValue" th:value="${defaultAddress.receiverName}">
+                                <label for="floatingInputValue">Receiver Name</label>
+                            </form>
+                            <form class="form-floating mb-md-2">
+                                <input class="form-control" type="text" aria-label="default input example" th:value="${defaultAddress.receiverMobile}">
+                                <label for="floatingInputValue">Receiver Phone Number</label>
+                            </form>
+                            <form class="form-floating mb-md-2">
+                                <input type="email" class="form-control" aria-label="default input example" th:value="${userDetail.email}">
+                                <label for="floatingInputValue">Receiver Email</label>
+                            </form>
+                            <div class="form-floating">
+                                <textarea name="comment" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">Comments</label>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <h5>Payment Method</h5>
+                            <div class="list-payment-method">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <p>Interbank Transfer or Electronic Wallet</p>
+                                            <div>
+                                                <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"/>
+                                            </div>
+                                        </div>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <p>Direct Payment at Shop</p>
+                                            <div>
+                                                <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"/>
+                                            </div>
+                                        </div>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <p>Pay after Shipping</p>
+                                            <div>
+                                                <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"/>
+                                            </div>
+                                        </div>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <h5>Addition Information</h5>
-                                <div class="form-floating">
-                                    <p>Leave here a comment for a more specific shipping address</p>
-                                    <textarea class="form-control" style="height: 180px"></textarea>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,58 +95,31 @@
                             <div class="product-name">
                                 <h5>Products</h5>
                                 <hr/>
-                                <div class="products-name mb-md-5">
-                                    <p>Luffy Figure</p>
-                                    <span>10000000<sup>đ</sup></span>
-                                </div>
-                                <div class="total-product-payment">
-                                    <h4>Total:</h4>
-                                    <span>10000000<sup>đ</sup></span>
-                                </div>
-                                <hr/>
-                                <div class="payment-method">
-                                    <h5>Payment Method</h5>
-                                    <div class="list-payment-method">
-                                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                                            <div class="accordion-item">
-                                                <div class="accordion-header">
-                                                    <p>Interbank Transfer or Electronic Wallet</p>
-                                                    <div>
-                                                        <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"/>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="accordion-item">
-                                                <div class="accordion-header">
-                                                    <p>Direct Payment at Shop</p>
-                                                    <div>
-                                                        <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"/>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item">
-                                                <div class="accordion-header">
-                                                    <p>Pay after Shipping</p>
-                                                    <div>
-                                                        <input type="checkbox" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"/>
-                                                    </div>
-                                                </div>
-                                                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-                                                </div>
-                                            </div>
+                                <div class="products-name mb-md-2" th:each="item:${session.cart}">
+                                    <div class="item-in-payment">
+                                        <p th:text="${item.itemName}"></p>
+                                        <div class="quantity-in-payment">
+                                            <p>x</p>
+                                            <p th:text="${item.quantity}"></p>
                                         </div>
                                     </div>
-                                    <div class="complete-order mt-md-3 text-center">
-                                        <button type="button" class="btn btn-outline-info">Complete Order</button>
-                                    </div>
+                                    <span><span th:text="*{#numbers.formatInteger(item.totalPrice, 3, 'POINT')}"></span><sup>đ</sup></span>
+                                </div>
+                                <hr/>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Sale Code" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-info" type="button" id="button-addon2">Apply</button>
+                                </div>
+                                <hr/>
+                                <div class="total-product-payment">
+                                    <h4>Total:</h4>
+                                    <span><span th:text="*{#numbers.formatInteger(session.totalProductPrice, 3, 'POINT')}"></span><sup>đ</sup></span>
+                                </div>
+                                <hr/>
+                                <div class="complete-order mt-md-3 text-center">
+                                    <button type="button" class="btn btn-outline-info">
+                                        <a th:href="@{/main/checkout}">Complete Order</a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
