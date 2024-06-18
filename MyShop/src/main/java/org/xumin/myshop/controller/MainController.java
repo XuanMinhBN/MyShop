@@ -81,7 +81,7 @@ public class MainController {
 
     //Homepage controller
     @GetMapping("/home")
-    public String home(Model model){
+    public String home(Model model, HttpSession session){
         model.addAttribute("title", "MyShop");
         List<Product> productList = productService.findAll();
         model.addAttribute("productList", productList);
@@ -97,10 +97,10 @@ public class MainController {
     }
 
     //User page controller
-    @GetMapping("/user")
-    public String account(Model model){
-        return "/pages/user";
-    }
+//    @GetMapping("/user")
+//    public String account(Model model){
+//        return "/pages/user";
+//    }
 
     //Address page controller
     @GetMapping("/address")

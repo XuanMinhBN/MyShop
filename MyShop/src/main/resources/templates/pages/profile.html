@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<!--Profile Page-->
+<div layout:fragment="profile">
+    <div class="container mt-md-5">
+        <div class="row">
+            <div class="profile-title mt-md-3" style="display: flex; justify-content: center;">
+                <img src="/image/free-user.png" alt="" width="100">
+                <h4 style="align-content: center;">List Account</h4>
+            </div>
+            <div class="col-8">
+
+            </div>
+            <div class="col-4">
+                    <div class="profile-content mt-md-3">
+                        <div class="card mb-3" style="width: 400px; border: 1px solid #c7dbd2; margin-right: 10px;" th:each="acc:*{user}">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/image/User_icon.png" class="img-fluid rounded-start" alt="..." width="200">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div style="display: flex;">
+                                            <i class="bi bi-tag"></i>
+                                            <p class="text-info" style="margin-bottom: 0; margin-left: 4px;" th:text="${acc.fullName}"></p>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <i class="bi bi-telephone"></i>
+                                            <p class="text-warning" style="margin-bottom: 0; margin-left: 4px;" th:text="${acc.userDetail.mobile}"></p>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <i class="bi bi-envelope-at"></i>
+                                            <p class="text-success" style="margin-bottom: 0; margin-left: 4px;" th:text="${acc.userDetail.email}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Activate</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

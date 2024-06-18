@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{home.html}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Thanks</title>
+    <link rel="stylesheet" th:href="@{/css/page/homeproduct.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
 </head>
 <body>
-    <h1>Thanks For Buying</h1>
+    <div layout:fragment="thanks">
+        <div class="container mt-md-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <img src="/image/paidThank.png" alt="" width="500">
+                    </div>
+                    <div class="text-center">
+                        <a type="button" class="btn btn-outline-info" th:href="@{/account/purchase}">
+                            <i class="bi bi-cart-check"></i>
+                            My Purchase
+                        </a>
+                        <a type="button" class="btn btn-outline-success" th:href="@{/main/home}">
+                            <i class="bi bi-cart3"></i>
+                            Go to the shop
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

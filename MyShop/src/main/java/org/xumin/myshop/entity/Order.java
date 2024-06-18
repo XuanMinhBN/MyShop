@@ -3,6 +3,7 @@ package org.xumin.myshop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.xumin.myshop.util.FormatOrderNumber;
 
 import java.sql.Date;
 import java.util.List;
@@ -16,9 +17,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
-
-    @Column(name = "user_id")
-    private Long userId;
 
     @Column(name = "order_shipped_date")
     private Date orderShipDate;
@@ -44,6 +42,10 @@ public class Order {
     @Column(name = "shipping_address")
     private String shippingAddress;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "order_status_id", referencedColumnName = "order_status_id")
     private OrderStatus orderStatus;
@@ -51,4 +53,7 @@ public class Order {
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetail;
 
+    public String getOrderNumber(){
+        return FormatOrderNumber.LPAD(String.valueOf(id), 5, "0");
+    }
 }

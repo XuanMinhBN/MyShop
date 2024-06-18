@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,7 @@ public class OrderController {
     }
 
     @GetMapping("/checkout")
+    @Transactional
     public String order(Authentication authentication, HttpSession session) {
         AuthUser authUser = (AuthUser) authentication.getPrincipal();
         User user = userService.findByUsername(authUser.getUsername());
@@ -43,7 +46,7 @@ public class OrderController {
         orderStatus.setId(1L);
 
         Order order = new Order();
-        order.setUserId(user.getId());
+        order.setUser(user);
         order.setOrderShipDate(Date.valueOf(LocalDate.now()));
         order.setOrderCreatedAt(Date.valueOf(LocalDate.now()));
         order.setOrderStatus(orderStatus);
@@ -54,7 +57,11 @@ public class OrderController {
         order.setReceiverMobile(defaultAddress.getReceiverMobile());
         order.setShippingAddress(defaultAddress.getAddress());
         order.setOrderDetail(getOrderDetailList((List<Item>) session.getAttribute("cart"),order));
-        orderService.save(order);
+        Order orderAlt = orderService.save(order);
+        if(orderAlt != null) {
+            session.invalidate();
+            return "redirect:/pages/thanks";
+        }
         return "thanks";
     }
 

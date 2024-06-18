@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User findByUsername(String username) {
         return userReponsitory.findByUsername(username);
     }
+
+    @Override
+    public List<User> findAll() {
+        return userReponsitory.findAll();
+    }
 }

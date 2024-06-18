@@ -66,59 +66,64 @@
                     </ul>
                 </div>
                 <div class="user-detail mt-md-4">
-                    <table class="table table-dark table-hover" style="border: 1px solid gray">
-                        <thead>
-                        <tr>
-                            <th scope="col">
-                                Image
-                            </th>
-                            <th scope="col">
-                                Name
-                            </th>
-                            <th scope="col">
-                                <div class="text-center">
-                                    Quantity
+                    <div class="list-purchase" style="display: flex;">
+                        <div class="card border-light mb-3" style="max-width: 20rem; margin-right: 20px;" th:each="order:${user.orderList}">
+                            <div class="card-header" style="display: flex; justify-content: space-between;">
+                                <div style="margin-right: 20px;">
+                                    <p style="margin-bottom: 0;">Order Code:</p>
+                                    <div class="text-info" th:text="${order.getOrderNumber}"></div>
                                 </div>
-                            </th>
-                            <th scope="col">
-                                <div style="display: flex; justify-content: center">
-                                    Price
+                                <div>
+                                    <p style="margin-bottom: 0;">Created Date:</p>
+                                    <div class="text-info" th:text="${#dates.format(order.orderCreatedAt, 'dd-MM-yyyy')}"></div>
                                 </div>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="item:${session.cart}">
-                                <th scope="row">
-                                    <img th:src="@{'/image/products/'+${item.image}}" alt="..." width="70">
-                                </th>
-                                <td>
-                                    <p th:text="${item.itemName}"></p>
-                                </td>
-                                <td>
-                                    <div class="text-center">
-                                        <span th:text="${item.quantity}"></span>
+                            </div>
+                            <div class="card-body" style="display: flex; justify-content: space-between">
+                                <h5 class="card-title" style="margin-right: 10px; align-content: center;">Your Purchases</h5>
+                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-box-seam"></i>
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Purchase Detail</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">Image</th>
+                                                        <th scope="col">Product Name</th>
+                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Price</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="item:${order.orderDetail}">
+                                                        <th scope="row">
+                                                            <img th:src="@{'/image/products/'+${item.productImage}}" alt="" width="60">
+                                                        </th>
+                                                        <td>
+                                                            <h6 th:text="${item.productName}"></h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6 th:text="${item.quantity}"></h6>
+                                                        </td>
+                                                        <td>
+                                                            <span th:text="*{#numbers.formatInteger(item.amount, 3, 'POINT')}"></span><sup>đ</sup>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="text-center">
-                                        <span th:text="*{#numbers.formatInteger(item.totalPrice, 3, 'POINT')}"></span><sup>đ</sup>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td colspan="2"></td>
-                                <td style="display: flex; justify-content: center">
-                                    <div>
-                                        <button type="button" class="btn btn-outline-success">Buy Again</button>
-                                        <button type="button" class="btn btn-outline-light">Contact Seller</button>
-                                        <button type="button" class="btn btn-outline-light">View Shop Rating</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
