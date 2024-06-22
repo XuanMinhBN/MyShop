@@ -34,7 +34,7 @@ public class OrderDetail {
     @Column(name = "amount")
     private Double amount;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", referencedColumnName = "order_id")
     private Order order;
 }

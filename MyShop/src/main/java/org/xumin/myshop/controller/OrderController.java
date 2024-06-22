@@ -57,11 +57,10 @@ public class OrderController {
         order.setReceiverMobile(defaultAddress.getReceiverMobile());
         order.setShippingAddress(defaultAddress.getAddress());
         order.setOrderDetail(getOrderDetailList((List<Item>) session.getAttribute("cart"),order));
-        Order orderAlt = orderService.save(order);
-        if(orderAlt != null) {
-            session.invalidate();
-            return "redirect:/pages/thanks";
-        }
+        orderService.save(order);
+        session.removeAttribute("cart");
+        session.removeAttribute("totalProductPrice");
+        session.removeAttribute("totalProductQuantity");
         return "thanks";
     }
 

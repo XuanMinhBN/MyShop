@@ -3,7 +3,7 @@ package org.xumin.myshop.controller;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,7 +19,6 @@ import org.xumin.myshop.service.ProductService;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("main")
@@ -79,18 +78,20 @@ public class MainController {
         return "/detail";
     }
 
-    //Homepage controller
+    //Homepage controller with pagination
     @GetMapping("/home")
-    public String home(Model model, HttpSession session){
+    public String home(@RequestParam(name = "page",defaultValue = "1") Integer page, Model model){
         model.addAttribute("title", "MyShop");
-        List<Product> productList = productService.findAll();
+        Page<Product> productList = productService.findAll(page);
+        model.addAttribute("totalPage",productList.getTotalPages());
+        model.addAttribute("currentPage",page);
         model.addAttribute("productList", productList);
         return "/pages/homeproducts";
     }
 
     //Search function controller
     @GetMapping("/search")
-    public String homeAlt(@RequestParam(name = "search_bar") String name, Model model){
+    public String searchProduct(@RequestParam(name = "search_bar") String name, Model model){
         List<Product> productList = productService.findByNameContaining(name);
         model.addAttribute("productList", productList);
         return "/pages/homeproducts";

@@ -66,8 +66,8 @@
                     </ul>
                 </div>
                 <div class="user-detail mt-md-4">
-                    <div class="list-purchase" style="display: flex;">
-                        <div class="card border-light mb-3" style="max-width: 20rem; margin-right: 20px;" th:each="order:${user.orderList}">
+                    <div class="list-purchase row">
+                        <div class="card border-light mb-3" style="max-width: 18rem; margin-right: 20px; padding: 0;" th:each="order, i : ${user.orderList}">
                             <div class="card-header" style="display: flex; justify-content: space-between;">
                                 <div style="margin-right: 20px;">
                                     <p style="margin-bottom: 0;">Order Code:</p>
@@ -80,15 +80,15 @@
                             </div>
                             <div class="card-body" style="display: flex; justify-content: space-between">
                                 <h5 class="card-title" style="margin-right: 10px; align-content: center;">Your Purchases</h5>
-                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" th:data-bs-target="${'#exampleModal' + i.count}">
                                     <i class="bi bi-box-seam"></i>
                                 </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                <div class="modal fade" th:id="${'exampleModal' + i.count}" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Purchase Detail</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h1 class="modal-title fs-5">Purchase Detail</h1>
                                             </div>
                                             <div class="modal-body">
                                                 <table class="table table-hover">
@@ -101,7 +101,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr th:each="item:${order.orderDetail}">
+                                                    <tr th:each="item:*{order.orderDetail}">
                                                         <th scope="row">
                                                             <img th:src="@{'/image/products/'+${item.productImage}}" alt="" width="60">
                                                         </th>

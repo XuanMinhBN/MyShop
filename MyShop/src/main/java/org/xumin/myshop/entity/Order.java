@@ -50,7 +50,7 @@ public class Order {
     @JoinColumn(name = "order_status_id", referencedColumnName = "order_status_id")
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetail;
 
     public String getOrderNumber(){

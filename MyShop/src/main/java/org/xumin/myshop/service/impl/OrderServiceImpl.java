@@ -9,6 +9,7 @@ import org.xumin.myshop.service.OrderService;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -22,5 +23,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         return orderReponsitory.save(order);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderReponsitory.findAll();
     }
 }

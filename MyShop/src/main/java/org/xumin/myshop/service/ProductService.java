@@ -1,5 +1,7 @@
 package org.xumin.myshop.service;
 
+import org.springframework.data.domain.Page;
+import org.xumin.myshop.entity.Category;
 import org.xumin.myshop.entity.Product;
 
 import java.util.List;
@@ -16,4 +18,5 @@ public interface ProductService {
 
     List<Product> sortByPrice(String type);
 
+    Page<Product> findAll(Integer page);
 }

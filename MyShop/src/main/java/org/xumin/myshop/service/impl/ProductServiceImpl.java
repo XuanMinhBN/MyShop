@@ -1,7 +1,11 @@
 package org.xumin.myshop.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.xumin.myshop.entity.Category;
 import org.xumin.myshop.entity.Product;
 import org.xumin.myshop.reponsitory.ProductReponsitory;
 import org.xumin.myshop.service.ProductService;
@@ -48,5 +52,11 @@ public class ProductServiceImpl implements ProductService {
             sortedList.sort(Comparator.comparing(Product::getPrice).reversed());
         }
         return sortedList;
+    }
+
+    @Override
+    public Page<Product> findAll(Integer page) {
+        Pageable pageable = PageRequest.of(page-1,10);
+        return this.productReponsitory.findAll(pageable);
     }
 }
