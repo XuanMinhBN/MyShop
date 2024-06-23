@@ -5,14 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.xumin.myshop.entity.Category;
 import org.xumin.myshop.entity.Product;
 import org.xumin.myshop.reponsitory.ProductReponsitory;
 import org.xumin.myshop.service.ProductService;
 
 import java.util.*;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -26,6 +23,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return productReponsitory.findAll();
+    }
+
+    @Override
+    public boolean createProduct(Product product) {
+        try {
+            productReponsitory.save(product);
+            return true;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateProduct(Product product) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteProduct(Product product) {
+        return false;
     }
 
     @Override
@@ -55,8 +73,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<Product> findAll(Integer page) {
-        Pageable pageable = PageRequest.of(page-1,10);
+    public Page<Product> findAll(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page-1,size);
         return this.productReponsitory.findAll(pageable);
     }
 }

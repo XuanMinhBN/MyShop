@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin.html}">
+<head>
+    <title>Admin</title>
+</head>
+<body>
+<!--Admin Home Page-->
+<th:block layout:fragment="content">
+<main class="p-0 col-md-8">
+    <div class="greeting-bar mt-md-4">
+        <h5>Hi, Welcome back!</h5>
+        <button type="button" class="btn btn-info">Import</button>
+    </div>
+    <div class="dashboard-content mt-md-4">
+        <h3>Dashboard</h3>
+        <div class="specific-dashboard-content mt-md-3">
+            <div class="card border-warning mb-3" style="width: 18rem;">
+                <div class="card-header text-center text-warning">Total Sales</div>
+                <div class="card-body text-warning">
+                    <h2 class="card-title">
+                        <i class="bi bi-coin"></i>
+                    </h2>
+                    <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">5.000.000.000đ</p>
+                </div>
+            </div>
+            <div class="card border-success mb-3" style="width: 18rem;">
+                <div class="card-header text-center text-success">Total Orders</div>
+                <div class="card-body text-success">
+                    <h2 class="card-title">
+                        <i class="bi bi-cart3"></i>
+                    </h2>
+                    <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;" th:text="${orders}"></p>
+                </div>
+            </div>
+            <div class="card border-danger mb-3" style="width: 18rem;">
+                <div class="card-header text-center text-danger">Total Growth</div>
+                <div class="card-body text-danger">
+                    <h2 class="card-title">
+                        <i class="bi bi-graph-up"></i>
+                    </h2>
+                    <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;">10.000.000đ</p>
+                </div>
+            </div>
+            <div class="card border-primary mb-3" style="width: 18rem;">
+                <div class="card-header text-center text-primary">Total Products</div>
+                <div class="card-body text-primary">
+                    <h2 class="card-title">
+                        <i class="bi bi-basket"></i>
+                    </h2>
+                    <p style="font-size: 26px; margin-left: 6px; margin-top: 4px;" th:text="${products}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="table-products mt-md-5" style="margin-left: 20px;">
+            <h3 style="margin-left: 0;">Latest Products</h3>
+            <div style="height: 320px; overflow-y: scroll">
+                <table class="table table-fixed">
+                    <thead style="position: sticky; top: 0;">
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="item:${orderList}">
+                    <tr th:each="order:${item.orderDetail}">
+                        <th class="header" scope="row">
+                            <img th:src="@{'/image/products/'+${order.productImage}}" alt="" width="30">
+                        </th>
+                        <td>
+                            <p th:text="${order.productName}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${item.orderCreatedAt}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${order.quantity}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${order.amount}"></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+</th:block>
+</body>
+</html>

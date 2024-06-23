@@ -82,7 +82,7 @@ public class MainController {
     @GetMapping("/home")
     public String home(@RequestParam(name = "page",defaultValue = "1") Integer page, Model model){
         model.addAttribute("title", "MyShop");
-        Page<Product> productList = productService.findAll(page);
+        Page<Product> productList = productService.findAll(page,10);
         model.addAttribute("totalPage",productList.getTotalPages());
         model.addAttribute("currentPage",page);
         model.addAttribute("productList", productList);

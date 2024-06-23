@@ -175,4 +175,17 @@ main {
     border-radius: 10px;
     align-items: center;
 }
-
+.email-title, .product-manage-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.email-title h3, .product-manage-title h3{
+    margin-right: 10px;
+}
+.product-table td{
+    align-content: center;
+}
+.product-table p{
+    margin-bottom: 0;
+}

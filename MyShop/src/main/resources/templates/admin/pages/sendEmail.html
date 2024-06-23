@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin.html}">
+<head>
+    <title>Email Sending</title>
+</head>
+<body>
+  <th:block layout:fragment="content">
+    <main class="p-0 col-md-8">
+        <div class="col-md-12 mt-md-4">
+            <div class="email-title text-center mb-md-4">
+                <h3><i class="bi bi-envelope-at"></i></h3>
+                <h3>Email Sending</h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <img src="/image/email.png" alt="" width="200">
+                    </div>
+                    <div class="col-8">
+                        <div class="content">
+                            <form th:action="@{/admin/email/send}" method="get">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword" placeholder="name@example.com" name="from">
+                                    <label for="floatingPassword">From</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="to">
+                                    <label for="floatingInput">Send To</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="subject"></textarea>
+                                    <label for="floatingTextarea">Subjects</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" name="content"></textarea>
+                                    <label for="floatingTextarea2">Email Content</label>
+                                </div>
+                                <button type="submit" class="btn btn-outline-info">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+  </th:block>
+</body>
+</html>

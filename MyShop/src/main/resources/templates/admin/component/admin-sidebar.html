@@ -1,0 +1,96 @@
+<!--Admin Side-bar-->
+<main class="d-flex flex-nowrap p-0 col-md-2" th:fragment="sidebar">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a th:href="@{/admin/view}" class="nav-link active" aria-current="page">
+                    <i class="bi bi-house-door" width="16" height="16">
+                        <use xlink:href="#home"/>
+                    </i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-speedometer2" width="16" height="16">
+                        <use xlink:href="#speedometer2"/>
+                    </i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-table" width="16" height="16">
+                        <use xlink:href="#table"/>
+                    </i>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/product}" class="nav-link link-body-emphasis">
+                    <i class="bi bi-grid" width="16" height="16">
+                        <use xlink:href="#grid"/>
+                    </i>
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-bar-chart-line" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Customers
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-person-circle"  width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Statistics
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-chat-left" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Reviews
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-cash-coin" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Transactions
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-globe2" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Sellers
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/email}" class="nav-link link-body-emphasis">
+                    <i class="bi bi-tag" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Send Email
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-body-emphasis">
+                    <i class="bi bi-gear" width="16" height="16">
+                        <use xlink:href="#people-circle"/>
+                    </i>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class=" b-example-vr"></div>
+</main>

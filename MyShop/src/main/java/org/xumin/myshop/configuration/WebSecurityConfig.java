@@ -21,7 +21,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/main/detail/**","/sort/**","/path/**","/main/search").permitAll()
                         .requestMatchers("/api/cart/**").permitAll()
                         .requestMatchers("/main/payment","/cart/item/delete/**","/cart/delete","/main/orders","/account/**").hasRole("MEMBER")
-                        .requestMatchers("/admin/**","/employee/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**","/employee/**", "/email/send").hasRole("ADMIN")
                         .requestMatchers("/employee/**").hasRole("EMPLOYEE")
                         .anyRequest().authenticated()
                 )

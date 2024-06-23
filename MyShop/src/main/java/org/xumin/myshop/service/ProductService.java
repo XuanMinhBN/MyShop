@@ -10,6 +10,12 @@ import java.util.Optional;
 public interface ProductService {
     List<Product> findAll();
 
+    boolean createProduct(Product product);
+
+    boolean updateProduct(Product product);
+
+    boolean deleteProduct(Product product);
+
     Optional<Product> findById(Long id);
 
     List<Product> findByCategoryId(Long id);
@@ -18,5 +24,7 @@ public interface ProductService {
 
     List<Product> sortByPrice(String type);
 
-    Page<Product> findAll(Integer page);
+    Page<Product> findAll(Integer page, Integer size);
+
+
 }

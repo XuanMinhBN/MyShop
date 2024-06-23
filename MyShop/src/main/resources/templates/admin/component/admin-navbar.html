@@ -1,0 +1,58 @@
+<!--Admin Navbar-->
+<header class="p-0" th:fragment="admin-navbar">
+    <div class="navbar-admin">
+        <nav class="navbar navbar-expand-lg bg-dark border-body">
+            <div class="container-fluid">
+                <div class="admin-symbol">
+                    <a href="/static" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                        <img src="/image/admin.png" alt="" width="80">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li>
+                            <h3>Admin</h3>
+                        </li>
+                    </ul>
+                    <div style="margin-right: 16px; display: flex;">
+                        <i class="bi bi-clipboard2-data" style="font-size: 20px; cursor: pointer; margin-right: 2px;"></i>
+                    </div>
+                    <div class="btn-group" style="margin-right: 16px;">
+                                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell" style="font-size: 20px; cursor: pointer;"></i>
+                                </span>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><button class="dropdown-item" type="button">Action</button></li>
+                            <li><button class="dropdown-item" type="button">Another action</button></li>
+                            <li><button class="dropdown-item" type="button">Something else here</button></li>
+                        </ul>
+                    </div>
+                    <form class="d-flex" role="search" style="margin-right:16px;">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/image/Avatar.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <strong th:sec:authentication="name"></strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+                            <li>
+                                <a class="dropdown-item" style="color: #fd7e14; cursor: pointer;" th:href="@{/admin/report/excel}">
+                                    Download File
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/main/logout}">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

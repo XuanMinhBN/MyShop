@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin.html}">
+<head>
+    <title>Product Management</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+      <main class="p-0 col-md-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-md-3">
+                    <div class="product-manage-title mb-md-2">
+                        <h3><i class="bi bi-archive"></i></h3>
+                        <h3>Product Management</h3>
+                    </div>
+                    <div class="add-new-product mb-md-2 text-center">
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">+ New Product</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="">
+                                        <div class="mb-3">
+                                            <label class="form-label">Product Name</label>
+                                            <input class="form-control" type="text" aria-label="default input example">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" placeholder="Product Price">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>
+                                                <input type="text" class="form-control" placeholder="Quantity">
+                                            </label>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Add Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-table">
+                        <table class="table table-bordered border-info table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Price</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product : ${productList}">
+                                <th scope="row">
+                                    <img th:src="@{'/image/products/'+${product.image}}" alt="" width="60">
+                                </th>
+                                <td>
+                                    <p th:text="${product.name}"></p>
+                                </td>
+                                <td>
+                                    <span th:text="*{#numbers.formatInteger(product.price, 3, 'POINT')}"></span><sup>đ</sup>
+                                </td>
+                                <td>
+                                    <p th:text="${product.description}"></p>
+                                </td>
+                                <td>
+                                    <p th:text="${product.quantity}"></p>
+                                </td>
+                                <td>
+                                    <div class="text-center" style="display: flex; align-items: center; justify-content: center">
+                                        <button type="button" class="btn btn-outline-success" style="margin-right: 10px;">Edit</button>
+                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination justify-content-end">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${currentPage > 1}">
+                                    <a class="page-link" th:href="@{'?page='+${currentPage - 1}}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}" th:classappend="${currentPage==i}? 'active':'' ">
+                                    <a class="page-link" th:href="@{'?page='+${i}}" th:text="${i}"></a>
+                                </li>
+                                <li class="page-item" th:if="${currentPage < totalPage}">
+                                    <a class="page-link" th:href="@{'?page='+${currentPage + 1}}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </main>
+    </th:block>
+</body>
+</html>
